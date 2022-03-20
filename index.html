@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css/styles.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="starter-clock">
+			<p id="time-start">3</p>
+		</div>
+		<div id="finish-post">
+			<h1>You Lost</h1>
+			<p>Your Step:</p>
+			<a href="index.html" class="button">Play Again</a>
+		</div>
+		<div class="input-field">
+			<div class="flex">
+				<p>How many rows</p>
+				<input
+					type="text"
+					name="rowinput"
+					id="rowInput"
+					class="row-col-input"
+					placeholder="3"
+				/>
+			</div>
+			<div class="flex">
+				<p>How many collums</p>
+				<input
+					type="text"
+					name="colinput"
+					id="colInput"
+					class="row-col-input"
+					placeholder="3"
+				/>
+			</div>
+			<div class="flex flex-url">
+				<p>Type in your URL</p>
+				<input
+					type="text"
+					name="urlInput"
+					id="urlInput"
+					class="url-input"
+					placeholder="www."
+				/>
+			</div>
+
+			<div class="flex flex-button">
+				<button type="submit" id="button">Play</button>
+			</div>
+		</div>
+		<div class="playground">
+			<div id="img-playground"></div>
+			<div class="clock-area">
+				<div id="clock"><p>10:00</p></div>
+			</div>
+		</div>
+		<img id="full-img" src="" alt="" />
+		<script src="app.js"></script>
+	</body>
+</html>
