@@ -62,7 +62,7 @@ body {
 	align-items: center;
 	justify-content: center;
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 650px) {
 	.input-field {
 		width: 90%;
 		margin: auto;
@@ -88,6 +88,28 @@ body {
 	height: 450px;
 	background-color: #fffbe9;
 }
+@media screen and (min-width: 650px) and (max-width: 1024px) {
+	.input-field {
+		width: 90%;
+		margin: auto;
+		flex-direction: column;
+	}
+	.flex {
+		height: auto;
+		flex-basis: 50%;
+	}
+	.flex + .flex-url {
+		height: 20rem;
+		flex-basis: 100%;
+	}
+	.playground {
+		flex-direction: column-reverse;
+
+		width: 100%;
+		align-items: center;
+	}
+}
+
 .clock-area {
 	position: relative;
 	width: 360px;
