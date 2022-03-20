@@ -152,7 +152,6 @@ body {
 	transform: translate(-50%, -50%);
 	width: 10rem;
 	height: 10rem;
-	border-radius: 50%;
 	background-color: #ceab93;
 	color: #fffbe9;
 	z-index: 3;
