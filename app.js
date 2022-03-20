@@ -10,7 +10,10 @@ let success = false;
 let score = 0;
 
 inputButton.onclick = function () {
-	if (finishCheck == true) {
+	if (
+		finishCheck == true &&
+		checkValid(urlInput.value, rowInput.value, colInput.value)
+	) {
 		let url;
 		finishCheck = false;
 		if (urlInput.value == "") {
@@ -360,5 +363,30 @@ function dragElementTouch(elmnt) {
 			finishCheck = checkFinish();
 			endGame();
 		}
+	}
+}
+
+const isImgLink = (url) => {};
+
+function checkValid(url, row, col) {
+	if (url == "" && row == "" && col == "") {
+		return true;
+	}
+	let check = false;
+
+	if (typeof url !== "string") {
+		return false;
+	} else if (
+		url.match(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim) !== null
+	) {
+		check = true;
+	} else {
+		return false;
+	}
+	if (isNaN(row) || isNaN(col)) {
+		return false;
+	}
+	if (check == true) {
+		return true;
 	}
 }
