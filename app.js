@@ -135,6 +135,7 @@ function addDrag() {
 	const partList = document.getElementsByClassName("img-part");
 	for (let i = 0; i < partList.length; i++) {
 		dragElement(partList[i]);
+		dragElementTouch(partList[i]);
 	}
 }
 
@@ -304,4 +305,60 @@ function disableMoveBlock() {
 	const moveBlock = document.getElementById("move-block");
 	moveBlock.style.display = "none";
 	moveBlock.style.animation = "none";
+}
+
+function dragElementTouch(elmnt) {
+	let pos1 = 0,
+		pos2 = 0,
+		pos3 = 0,
+		pos4 = 0;
+	let originPosLeft = elmnt.style.left;
+	let originPosTop = elmnt.style.top;
+
+	elmnt.ontouchstart = dragMouseDown;
+
+	function dragMouseDown(e) {
+		console.log(e.touches[0].clientX + " " + e.touches[0].clientX);
+		originPosLeft = elmnt.style.left;
+		originPosTop = elmnt.style.top;
+
+		// get the mouse cursor position at startup:
+		pos3 = e.touches[0].clientX;
+		pos4 = e.touches[0].clientY;
+		document.ontouchend = closeDragElement;
+		// call a function whenever the cursor moves:
+		elmnt.ontouchmove = elementDrag;
+	}
+
+	function elementDrag(e) {
+		elmnt.style.zIndex = "1";
+		// calculate the new cursor position:
+		pos1 = pos3 - e.touches[0].clientX;
+		pos2 = pos4 - e.touches[0].clientY;
+		pos3 = e.touches[0].clientX;
+		pos4 = e.touches[0].clientY;
+		// console.log(e.clientX + " " + e.clientX);
+		// set the element's new position:
+		elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+		elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+	}
+
+	function closeDragElement() {
+		elmnt.style.zIndex = "0";
+		// stop moving when mouse button is released:
+		document.ontouchend = null;
+		document.ontouchmove = null;
+		if (checkOverlap(elmnt) == false) {
+			elmnt.style.top = originPosTop;
+			elmnt.style.left = originPosLeft;
+		} else {
+			let swapEl = checkOverlap(elmnt);
+			elmnt.style.top = originPosTop;
+			elmnt.style.left = originPosLeft;
+			swapElement(swapEl, elmnt);
+			score++;
+			finishCheck = checkFinish();
+			endGame();
+		}
+	}
 }
