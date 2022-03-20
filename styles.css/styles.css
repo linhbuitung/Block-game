@@ -1,3 +1,7 @@
+body {
+	margin: 0;
+	background-color: #e3caa5;
+}
 * {
 	font-family: "Courier New", Courier, monospace;
 	font-weight: 700;
@@ -14,6 +18,7 @@
 	justify-content: start;
 }
 .flex {
+	padding-top: 1rem;
 	text-align: center;
 	position: relative;
 	flex-grow: 1;
@@ -32,11 +37,9 @@
 .flex input {
 	width: 80%;
 	height: 2rem;
-
 	padding-left: 1rem;
 	color: rgba(66, 66, 66, 0.5);
-	border-radius: 25px;
-	border: 1px solid rgb(0, 98, 179);
+	border: 1px solid #ad8b73;
 }
 .flex-button {
 	display: flex;
@@ -44,9 +47,9 @@
 .flex button {
 	width: 80%;
 	height: 2.3rem;
-	border-radius: 25px;
-	background-color: rgb(0, 76, 138);
-	color: rgb(255, 255, 255);
+
+	background-color: #ad8b73;
+	color: #fffbe9;
 	display: inline-block;
 	align-self: flex-end;
 	margin: 0 auto;
@@ -81,8 +84,10 @@
 	position: relative;
 	width: 650px;
 	height: 450px;
+	background-color: #fffbe9;
 }
 .clock-area {
+	position: relative;
 	width: 360px;
 	height: 450px;
 	text-align: center;
@@ -91,20 +96,53 @@
 	position: relative;
 	width: 10rem;
 	height: 10rem;
-	border-radius: 50%;
+
 	margin: 2rem auto;
-	background-color: rgb(0, 119, 255);
-	color: rgb(255, 255, 255);
+	background-color: #ad8b73;
+	color: #fffbe9;
 }
 #clock p,
 #starter-clock p {
-	font-size: 2rem;
+	font-size: 2.6rem;
 	margin: 0;
 	display: block;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+#move-block {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1rem;
+	height: 1rem;
+	background-color: #ceab93;
+	animation: none;
+}
+
+@keyframes moveBlock {
+	0% {
+		left: -2rem;
+		top: -2rem;
+	}
+	25% {
+		left: 11rem;
+		top: -2rem;
+	}
+	50% {
+		left: 11rem;
+		top: 11rem;
+	}
+	75% {
+		left: -2rem;
+		top: 11rem;
+	}
+	100% {
+		left: -2rem;
+		top: -2rem;
+	}
 }
 #starter-clock {
 	display: none;
@@ -115,10 +153,19 @@
 	width: 10rem;
 	height: 10rem;
 	border-radius: 50%;
-	background-color: rgb(17, 165, 170);
-	color: rgb(255, 255, 255);
+	background-color: #ceab93;
+	color: #fffbe9;
+	z-index: 3;
 }
-
+#overlay {
+	display: none;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	background-color: #000000;
+	opacity: 0.6;
+	z-index: 2;
+}
 #starter-clock p {
 	font-size: 5rem;
 }
@@ -144,16 +191,19 @@
 	transform: translate(-50%, -50%);
 	width: 20rem;
 	height: 10rem;
-	border: 1px solid rgb(0, 120, 124);
+	border: 1px solid #8b705c;
 	border-radius: 10px;
-	background-color: rgb(155, 235, 255);
-	z-index: 0;
+	background-color: #ad8b73;
+	z-index: 3;
 }
 
+#finish-post * {
+	color: #fffbe9;
+}
 .button {
 	text-decoration: none;
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 120, 124);
+
+	background-color: #ad8b73;
 	border-radius: 10px;
 	padding: 0.2rem 0.5rem;
 }

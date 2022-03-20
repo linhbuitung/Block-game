@@ -5,27 +5,31 @@ const colInput = document.getElementById("colInput");
 const urlInput = document.getElementById("urlInput");
 const playground = document.getElementById("img-playground");
 const fullImg = document.getElementById("full-img");
-let finishCheck = false;
+let finishCheck = true;
 let success = false;
 let score = 0;
 
 inputButton.onclick = function () {
-	let url;
-	if (urlInput.value == "") {
-		url =
-			"https://gonintendo.com/uploads/file_upload/upload/78509/Switch_OriWW_03.jpg";
-	} else {
-		url = urlInput.value;
+	if (finishCheck == true) {
+		let url;
+		finishCheck = false;
+		if (urlInput.value == "") {
+			url =
+				"https://gonintendo.com/uploads/file_upload/upload/78509/Switch_OriWW_03.jpg";
+		} else {
+			url = urlInput.value;
+		}
+		var img = new Image();
+		img.src = url;
+		countDown();
+		setTimeout(function () {
+			createFlex(img.height, img.width, url);
+			randomPlayGround();
+			addDrag();
+			displayTimer();
+			enableMoveBlock();
+		}, 3000);
 	}
-	var img = new Image();
-	img.src = url;
-	countDown();
-	setTimeout(function () {
-		createFlex(img.height, img.width, url);
-		randomPlayGround();
-		addDrag();
-		displayTimer();
-	}, 3000);
 };
 
 function getMeta(url) {
@@ -39,7 +43,8 @@ function getMeta(url) {
 function countDown() {
 	const timerStart = document.getElementById("time-start");
 	const clockStart = document.getElementById("starter-clock");
-
+	const overlay = document.getElementById("overlay");
+	overlay.style.display = "block";
 	clockStart.style.display = "block";
 	timerStart.innerHTML = "3";
 	setTimeout(function () {
@@ -48,6 +53,7 @@ function countDown() {
 			timerStart.innerHTML = "1";
 			setTimeout(function () {
 				clockStart.style.display = "none";
+				overlay.style.display = "none";
 			}, 1000);
 		}, 1000);
 	}, 1000);
@@ -56,6 +62,13 @@ function countDown() {
 function createFlex(srcHeight, srcWidth, url) {
 	let row = rowInput.value;
 	let col = colInput.value;
+	if (row == "") {
+		row = 3;
+	}
+	if (col == "") {
+		col = 3;
+	}
+
 	let playgroundHeight = (srcHeight / srcWidth) * playground.offsetWidth + "px";
 	playground.style.height = playgroundHeight;
 
@@ -235,6 +248,7 @@ function checkFinish() {
 		}
 	}
 	success = true;
+
 	return true;
 }
 
@@ -244,6 +258,7 @@ function displayTimer() {
 }
 function setTimer(i) {
 	const clock = document.getElementById("clock");
+
 	setTimeout(function () {
 		i--; //  increment the counter
 		let displayText;
@@ -264,7 +279,7 @@ function setTimer(i) {
 }
 
 function endGame() {
-	console.log(finishCheck);
+	const overlay = document.getElementById("overlay");
 	const endDiv = document.getElementById("finish-post");
 	if (finishCheck == true) {
 		if (success == true) {
@@ -272,11 +287,21 @@ function endGame() {
 		} else {
 			endDiv.children[0].innerHTML = "You lose!";
 		}
-
+		disableMoveBlock();
 		endDiv.style.display = "block";
-		endDiv.style.zIndex = "2";
-		endDiv.children[1].innerHTML = "Your Score: " + score;
+		overlay.style.display = "block";
+
+		endDiv.children[1].innerHTML = "Your Steps: " + score;
 	}
 }
 
-function setTransition(el) {}
+function enableMoveBlock() {
+	const moveBlock = document.getElementById("move-block");
+	moveBlock.style.display = "block";
+	moveBlock.style.animation = "moveBlock 5s linear infinite";
+}
+function disableMoveBlock() {
+	const moveBlock = document.getElementById("move-block");
+	moveBlock.style.display = "none";
+	moveBlock.style.animation = "none";
+}
