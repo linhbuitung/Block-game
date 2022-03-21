@@ -58,7 +58,64 @@ inputButton.onclick = function () {
 		}, 3000);
 	}
 };
+inputButton.ontouchstart = function () {
+	if (
+		finishCheck == true &&
+		checkValid(urlInput.value, rowInput.value, colInput.value)
+	) {
+		let url;
+		finishCheck = false;
+		if (urlInput.value == "") {
+			url =
+				"https://gonintendo.com/uploads/file_upload/upload/78509/Switch_OriWW_03.jpg";
+		} else {
+			url = urlInput.value;
+		}
+		var img = new Image();
+		img.src = url;
+		countDown();
+		setTimeout(function () {
+			createFlex(img.height, img.width, url);
+			randomPlayGround();
+			addDrag();
+			displayTimer();
+			enableMoveBlock();
+		}, 3000);
+	} else {
+		removeImgPart();
+		clearTimer();
+		let url;
+		finishCheck = false;
+		if (urlInput.value == "") {
+			url =
+				"https://gonintendo.com/uploads/file_upload/upload/78509/Switch_OriWW_03.jpg";
+		} else {
+			url = urlInput.value;
+		}
+		var img = new Image();
+		img.src = url;
+		countDown();
+		setTimeout(function () {
+			createFlex(img.height, img.width, url);
+			randomPlayGround();
+			addDrag();
+
+			displayTimer();
+
+			enableMoveBlock();
+		}, 3000);
+	}
+};
+
 resetButton.onclick = function () {
+	clearTimer();
+	removeImgPart();
+	const overlay = document.getElementById("overlay");
+	const endDiv = document.getElementById("finish-post");
+	overlay.style.display = "none";
+	endDiv.style.display = "none";
+};
+resetButton.ontouchstart = function () {
 	clearTimer();
 	removeImgPart();
 	const overlay = document.getElementById("overlay");
