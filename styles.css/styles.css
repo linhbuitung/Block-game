@@ -16,9 +16,9 @@ body {
 	flex-direction: row;
 	align-items: stretch;
 	justify-content: start;
+	padding-top: 1rem;
 }
 .flex {
-	padding-top: 1rem;
 	text-align: center;
 	position: relative;
 	flex-grow: 1;
@@ -57,29 +57,12 @@ body {
 
 .playground {
 	display: flex;
+	flex: 1 1;
+	align-items: stretch;
 	width: 80%;
 	margin: 2rem auto 0 auto;
-	align-items: center;
+
 	justify-content: center;
-}
-@media screen and (max-width: 650px) {
-	.input-field {
-		width: 90%;
-		margin: auto;
-		flex-direction: column;
-	}
-	.flex {
-		height: auto;
-		flex-basis: 50%;
-	}
-	.flex + .flex-url {
-		height: 20rem;
-		flex-basis: 100%;
-	}
-	.playground {
-		flex-direction: column-reverse;
-		align-items: baseline;
-	}
 }
 #img-playground {
 	touch-action: none;
@@ -87,27 +70,6 @@ body {
 	width: 650px;
 	height: 450px;
 	background-color: #fffbe9;
-}
-@media screen and (min-width: 650px) and (max-width: 1024px) {
-	.input-field {
-		width: 90%;
-		margin: auto;
-		flex-direction: column;
-	}
-	.flex {
-		height: auto;
-		flex-basis: 50%;
-	}
-	.flex + .flex-url {
-		height: 20rem;
-		flex-basis: 100%;
-	}
-	.playground {
-		flex-direction: column-reverse;
-
-		width: 100%;
-		align-items: center;
-	}
 }
 
 .clock-area {
@@ -226,4 +188,65 @@ body {
 	background-color: #ad8b73;
 	border-radius: 10px;
 	padding: 0.2rem 0.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+	.input-field {
+		width: 90%;
+		margin: auto;
+		flex-direction: column;
+	}
+	.flex {
+		height: auto;
+		flex-basis: 50%;
+	}
+	.flex + .flex-url {
+		height: 20rem;
+		flex-basis: 100%;
+	}
+	.playground {
+		flex-direction: column-reverse;
+		width: 100%;
+	}
+	#img-playground {
+		width: 100%;
+	}
+	.clock-area {
+		align-self: flex-start;
+		width: 100%;
+		height: fit-content;
+	}
+	#clock {
+		width: 4rem;
+		height: 3rem;
+	}
+	#clock p {
+		font-size: 1rem;
+	}
+	#move-block {
+		width: 0.5rem;
+		height: 0.5rem;
+	}
+	@keyframes moveBlock {
+		0% {
+			left: -1rem;
+			top: -1rem;
+		}
+		25% {
+			left: 4.5rem;
+			top: -1rem;
+		}
+		50% {
+			left: 4.5rem;
+			top: 3.5rem;
+		}
+		75% {
+			left: -1rem;
+			top: 3.5rem;
+		}
+		100% {
+			left: -1rem;
+			top: -1rem;
+		}
+	}
 }
