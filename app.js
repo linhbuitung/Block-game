@@ -58,7 +58,6 @@ inputButton.onclick = function () {
 };
 
 resetButton.onclick = function (event) {
-	alert("Click");
 	event.preventDefault();
 	clearTimer();
 	removeImgPart();
