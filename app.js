@@ -59,7 +59,8 @@ inputButton.onclick = function () {
 	}
 };
 
-resetButton.onclick = function () {
+resetButton.onclick = function (event) {
+	event.preventDefault();
 	clearTimer();
 	removeImgPart();
 	const overlay = document.getElementById("overlay");
