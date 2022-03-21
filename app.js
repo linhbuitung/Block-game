@@ -1,10 +1,11 @@
 const inputButton = document.getElementById("button");
-console.log(inputButton);
+
 const rowInput = document.getElementById("rowInput");
 const colInput = document.getElementById("colInput");
 const urlInput = document.getElementById("urlInput");
 const playground = document.getElementById("img-playground");
 const fullImg = document.getElementById("full-img");
+const resetButton = document.getElementById("reset-button");
 let finishCheck = true;
 let success = false;
 let score = 0;
@@ -32,7 +33,38 @@ inputButton.onclick = function () {
 			displayTimer();
 			enableMoveBlock();
 		}, 3000);
+	} else {
+		removeImgPart();
+		clearTimer();
+		let url;
+		finishCheck = false;
+		if (urlInput.value == "") {
+			url =
+				"https://gonintendo.com/uploads/file_upload/upload/78509/Switch_OriWW_03.jpg";
+		} else {
+			url = urlInput.value;
+		}
+		var img = new Image();
+		img.src = url;
+		countDown();
+		setTimeout(function () {
+			createFlex(img.height, img.width, url);
+			randomPlayGround();
+			addDrag();
+
+			displayTimer();
+
+			enableMoveBlock();
+		}, 3000);
 	}
+};
+resetButton.onclick = function () {
+	clearTimer();
+	removeImgPart();
+	const overlay = document.getElementById("overlay");
+	const endDiv = document.getElementById("finish-post");
+	overlay.style.display = "none";
+	endDiv.style.display = "none";
 };
 
 function getMeta(url) {
@@ -255,16 +287,22 @@ function checkFinish() {
 
 	return true;
 }
-
+let timerTimeOut;
 function displayTimer() {
 	let i = 60;
 	setTimer(i);
 }
+function clearTimer() {
+	window.clearTimeout(timerTimeOut);
+	const clock = document.getElementById("clock");
+	clock.children[0].innerHTML = "10:00";
+	disableMoveBlock();
+}
 function setTimer(i) {
 	const clock = document.getElementById("clock");
 
-	setTimeout(function () {
-		i--; //  increment the counter
+	timerTimeOut = setTimeout(function () {
+		i--;
 		let displayText;
 		if (i >= 10 && finishCheck == false) {
 			displayText = "00:" + i;
@@ -369,9 +407,6 @@ function dragElementTouch(elmnt) {
 const isImgLink = (url) => {};
 
 function checkValid(url, row, col) {
-	if (url == "" && row == "" && col == "") {
-		return true;
-	}
 	let check = false;
 
 	if (typeof url !== "string") {
@@ -380,13 +415,25 @@ function checkValid(url, row, col) {
 		url.match(/^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gim) !== null
 	) {
 		check = true;
+	} else if (url == "") {
+		check = true;
 	} else {
 		return false;
 	}
-	if (isNaN(row) || isNaN(col)) {
-		return false;
+	if (isNaN(row) && row != "") {
+		check = false;
+	}
+	if (isNaN(col) && col != "") {
+		check = false;
 	}
 	if (check == true) {
 		return true;
+	}
+}
+
+function removeImgPart() {
+	let imgList = document.getElementsByClassName("img-part");
+	while (imgList[0] != null) {
+		imgList[0].remove();
 	}
 }
