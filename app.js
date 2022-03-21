@@ -51,9 +51,7 @@ inputButton.onclick = function () {
 			createFlex(img.height, img.width, url);
 			randomPlayGround();
 			addDrag();
-
 			displayTimer();
-
 			enableMoveBlock();
 		}, 3000);
 	}
