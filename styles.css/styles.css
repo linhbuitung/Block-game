@@ -173,8 +173,7 @@ body {
 	transform: translate(-50%, -50%);
 	width: 20rem;
 	height: 10rem;
-	border: 1px solid #8b705c;
-	border-radius: 10px;
+	border: 1px solid #ffffff;
 	background-color: #ad8b73;
 	z-index: 3;
 }
@@ -186,10 +185,12 @@ body {
 	text-decoration: none;
 
 	background-color: #ad8b73;
-	border-radius: 10px;
 	padding: 0.2rem 0.5rem;
 }
 
+#reset-button {
+	border: solid #ffffff;
+}
 @media screen and (max-width: 1024px) {
 	.input-field {
 		width: 90%;
