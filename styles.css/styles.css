@@ -210,6 +210,7 @@ body {
 	}
 	#img-playground {
 		width: 100%;
+		margin-bottom: 2rem;
 	}
 	.clock-area {
 		align-self: flex-start;
