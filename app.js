@@ -55,6 +55,7 @@ inputButton.onclick = function () {
 			enableMoveBlock();
 		}, 3000);
 	}
+	resetScore();
 };
 
 resetButton.onclick = function (event) {
@@ -436,4 +437,8 @@ function removeImgPart() {
 	while (imgList[0] != null) {
 		imgList[0].remove();
 	}
+}
+
+function resetScore() {
+	score = 0;
 }
