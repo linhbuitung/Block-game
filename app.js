@@ -324,6 +324,7 @@ function setTimer(i) {
 function endGame() {
 	const overlay = document.getElementById("overlay");
 	const endDiv = document.getElementById("finish-post");
+	checkFinish();
 	if (finishCheck == true) {
 		if (success == true) {
 			endDiv.children[0].innerHTML = "You win!";
