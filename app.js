@@ -281,6 +281,7 @@ function checkFinish() {
 	let childList = playground.children;
 	for (let i = 0; i < childList.length; i++) {
 		if (childList[i].style.order != i) {
+			success = false;
 			return false;
 		}
 	}
